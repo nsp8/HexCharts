@@ -13,7 +13,7 @@ class Country:
 
 
 def get_hex_data():
-    base_path = r"C:\Users\NishantParmar\Documents\Python Scripts"
+    base_path = os.environ["PYTHON_PROJECTS"]
     file_path = os.path.join(base_path, "HexGridGenerator", "Inputs",
                              "hexcodes_expanded_2.csv")
     hex_codes = pd.read_csv(file_path)
