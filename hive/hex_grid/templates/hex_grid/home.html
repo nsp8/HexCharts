@@ -1,0 +1,21 @@
+{% extends "hex_grid/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Chart</a>
+            </div>
+            <h2>
+                <a class="article-title" href="#">Hex Grid</a>
+            </h2>
+            <div class="article-content">
+            {% for country in countries %}
+                <div class="btn btn-warning mb-4">
+                    {{ country.id }} ({{ country.x }}, {{ country.y }})
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </article>
+
+{% endblock content %}
