@@ -56,6 +56,7 @@ a.navbar-brand:hover {
   border: 1px solid;
   border-radius: 10px;
   margin-bottom: 20px;
+  height: 70% !important;
 }
 
 .article-title {
@@ -104,4 +105,18 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+
+#polygon-container svg {
+    overflow: visible;
+    height: 100%;
+    width: 100%;
+}
+
+.t {
+    overflow: inherit;
+    font-size: 0.05em;
+    fill: #454545;
+    font-family: "Expletus Sans", cursive;
 }

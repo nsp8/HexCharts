@@ -1,5 +1,38 @@
 {% extends "hex_grid/base.html" %}
 {% block content %}
+    <article class="media content-section" >
+        <div id="polygon-container">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Chart</a>
+            </div>
+            <h2>
+                <a class="article-title" href="#"><b>Hex Grid</b></a>
+            </h2>
+            <div class="article-content">
+                <div>
+                <svg height="100%" width="100%">
+                {% for country in countries %}
+                    <svg viewBox="-3 -23 7 7" align="center">
+                        <polygon points="{{ country.hexes_string }}">
+                        </polygon>
+                        {% if country.y < 0 %}
+                            <text x="{{ country.x }}" y="{{ country.y }}"
+                                  class="t1" dx="-6.5%">
+                                {{ country.id }}
+                            </text>
+                        {% else %}
+                            <text x="{{ country.x }}" y="-{{ country.y }}"
+                                  class="t" dx="-6.5%">
+                                {{ country.id }}
+                            </text>
+                        {% endif %}
+                    </svg>
+                {% endfor %}
+                </svg>
+                </div>
+            </div>
+        </div>
+    </article>
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
@@ -18,4 +51,24 @@
         </div>
     </article>
 
+<script>
+    var hexagons = $("polygon");
+    console.log(hexagons);
+    for (var i = 0; i < hexagons.length; i++){
+        hexagons[i].style["fill"] = "rgb(241, 196, 15)";
+        hexagons[i].style["stroke-width"] = "3";
+    };
+    $("polygon").hover(function(){
+        $(this).css("fill", "rgb(255, 150, 15)");
+    }, function(){
+        $(this).css("fill", "rgb(241, 196, 15)");
+    });
+</script>
+<script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+<script>
+
+    var hexbin = d3.hexbin();
+
+
+</script>
 {% endblock content %}
