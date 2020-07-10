@@ -1,5 +1,36 @@
 {% extends "hex_grid/base.html" %}
 {% block content %}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">Chart</a>
+        </div>
+        <h2>
+            <a class="article-title" href="#"><b>Hex Grid</b></a>
+        </h2>
+        <div class="article-content">
+            <div class="container">
+                <div class="honeycomb">
+                    <div class="hexes-1 column">
+                            <a class="hex" id="test-hex">
+                                <div class="wrapper">
+                                    <div class="hexagon color-1"></div>
+                                </div>
+                                <span class="content">
+                                    <strong>Hello!</strong>
+                                    <small>i'm a hexagon</small>
+                                </span>
+                            </a>
+                    </div>
+                    <span class="info-block">
+                         <strong>Information</strong>
+                         <small>Hello there</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
 
 <article class="media content-section">
     <div class="media-body">
@@ -10,66 +41,61 @@
             <a class="article-title" href="#"><b>Hex Grid</b></a>
         </h2>
         <div class="article-content">
-<div class="container">
-    <div class="honeycomb">
-      {% for i in total_columns %}
-        <div class="hexes-{{ i }} column">
-            {% if i|divisibleby:"2" %}
-                {% for _ in hexes_in_even %}
-                <a class="hex">
-                    <div class="wrapper">
-                        <div class="hexagon color-1"></div>
+            <div class="container">
+                <div class="honeycomb">
+                  {% for i in total_columns %}
+                    <div class="hexes-{{ i }} column">
+                        {% if i|divisibleby:"2" %}
+                            {% for _ in hexes_in_even %}
+                            <a class="hex">
+                                <div class="wrapper">
+                                    <div class="hexagon color-1"></div>
+                                </div>
+                                <span class="content">
+                                    <strong>Hello!</strong>
+                                    <small>i'm a hexagon</small>
+                                </span>
+                            </a>
+                            {% endfor %}
+                        {% else %}
+                            {% for _ in hexes_in_odd %}
+                            <a class="hex">
+                                <div class="wrapper">
+                                    <div class="hexagon color-1"></div>
+                                </div>
+                                <span class="content">
+                                    <strong>Hello!</strong>
+                                    <small>i'm a hexagon</small>
+                                </span>
+                            </a>
+                            {% endfor %}
+                        {% endif %}
                     </div>
-                    <span class="content">
-                        <strong>Hello!</strong>
-                        <small>i'm a hexagon</small>
-                    </span>
-                </a>
-                {% endfor %}
-            {% else %}
-                {% for _ in hexes_in_odd %}
-                <a class="hex">
-                    <div class="wrapper">
-                        <div class="hexagon color-1"></div>
-                    </div>
-                    <span class="content">
-                        <strong>Hello!</strong>
-                        <small>i'm a hexagon</small>
-                    </span>
-                </a>
-                {% endfor %}
-            {% endif %}
-        </div>
-      {% endfor %}
+                  {% endfor %}
 
-    </div>
-<span class="info-block">
-     <strong>Information</strong>
-     <small>Hello there</small>
-</span>
-</div>
+                </div>
+                    <span class="info-block">
+                         <strong>Information</strong>
+                         <small>Hello there</small>
+                    </span>
+            </div>
         </div>
     </div>
 </article>
 
 <script>
-    var hexagons = $("polygon");
-    console.log(hexagons);
-    for (var i = 0; i < hexagons.length; i++){
-        hexagons[i].style["fill"] = "rgb(241, 196, 15)";
-        hexagons[i].style["stroke-width"] = "3";
-    };
-    $("polygon").hover(function(){
-        $(this).css("fill", "rgb(255, 150, 15)");
+    $(".hex").hover(function(){
+        console.log("Hovering over")
+        console.log("x: " + $(this).offset().left + " y: " + $(this).offset().top);
     }, function(){
-        $(this).css("fill", "rgb(241, 196, 15)");
+        console.log("Hovering out")
+        console.log("x: " + $(this).offset().left + " y: " + $(this).offset().top);
     });
+    var container = $("#test-hex").parent().parent().parent().parent();
+    console.log(container.offset());
+    var target_x = container.offset().left - $("#test-hex").offset().left;
+    var target_y = container.offset().top - $("#test-hex").offset().top;
+    $("#test-hex").css({left: target_x, top: target_y});
 </script>
-<script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
-<script>
 
-    var hexbin = d3.hexbin();
-
-
-</script>
 {% endblock content %}

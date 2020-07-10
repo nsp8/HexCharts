@@ -73,20 +73,22 @@ body {
   transition: all 0.3s ease-out;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
+  -webkit-transform: rotateZ(30deg);
+  transform: rotateZ(30deg);
   /*"content" goes here*/
 }
 .container .honeycomb .hex:hover {
   opacity: 1;
-  -webkit-transform: translateZ(20px);
-  transform: translateZ(20px);
+  -webkit-transform: translateZ(20px) rotateZ(30deg);
+  transform: translateZ(20px) rotateZ(30deg);
   -webkit-transition-duration: 200ms;
   transition-duration: 200ms;
 }
 .container .honeycomb .hex:hover .content {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  -webkit-transform: rotateX(0deg) translateZ(40px) translateY(-40px);
-  transform: rotateX(0deg) translateZ(40px) translateY(-40px);
+  -webkit-transform: rotateZ(-30deg) translateZ(40px) translateY(-40px);
+  transform: rotateZ(-30deg) translateZ(40px) translateY(-40px);
 }
 .container .honeycomb .hex .wrapper {
   display: block;
@@ -165,8 +167,8 @@ body {
   -webkit-transition-delay: 0.1s;
   -webkit-transition: all 0.3s ease-out 0.1s;
   transition: all 0.3s ease-out 0.1s;
-  -webkit-transform: rotateX(0deg) translateZ(40px) translateY(-40px);
-  transform: rotateX(0deg) translateZ(40px) translateY(-40px);
+  -webkit-transform: rotateX(0deg) translateZ(40px) translateY(-40px) rotateZ(-30deg);
+  transform: rotateX(0deg) translateZ(40px) translateY(-40px) rotateZ(-30deg);
   pointer-events: none;
   -webkit-font-smoothing: antialiased;
 }

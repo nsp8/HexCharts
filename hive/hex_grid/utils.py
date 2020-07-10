@@ -38,12 +38,15 @@ class Country:
 
 
 def get_hex_data():
-    base_path = os.environ["PYTHON_PROJECTS"]
-    file_path = os.path.join(base_path, "HexGridGenerator", "Inputs",
-                             "hexcodes_expanded_2.csv")
-    hex_codes = pd.read_csv(file_path)
-    hex_codes['y_scaled'] = hex_codes['y'] - hex_codes['y'].min()
     country_data = list()
-    for c, x, y in zip(hex_codes.id, hex_codes.x, hex_codes.y_scaled):
-        country_data.append(Country(c, x, y))
+    try:
+        base_path = os.environ["PYTHON_PROJECTS"]
+        file_path = os.path.join(base_path, "HexGridGenerator", "Inputs",
+                                 "hexcodes_expanded_2.csv")
+        hex_codes = pd.read_csv(file_path)
+        hex_codes['y_scaled'] = hex_codes['y'] - hex_codes['y'].min()
+        for c, x, y in zip(hex_codes.id, hex_codes.x, hex_codes.y_scaled):
+            country_data.append(Country(c, x, y))
+    except KeyError:
+        print("Couldn't locate country data")
     return country_data
