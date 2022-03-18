@@ -15,7 +15,7 @@ class Country:
     @property
     def hex_coordinates(self):
         r = 1 / math.sin(math.pi / 3)
-        coords_ = list()
+        coordinates = list()
         n = 6
         base_angle = 360 // n
         for i in range(n):
@@ -26,9 +26,9 @@ class Country:
             # revert back to self.y + (r * math.sin(relative_angle)) for MPL
             coord_ = [self.x + (r * math.cos(relative_angle)),
                       -self.y - (r * math.sin(relative_angle))]
-            coords_.append(coord_)
-        coords_.append(coords_[0])
-        return coords_
+            coordinates.append(coord_)
+        coordinates.append(coordinates[0])
+        return coordinates
 
     @property
     def hexes_string(self):
@@ -40,10 +40,10 @@ class Country:
 def get_hex_data():
     country_data = list()
     try:
-        base_path = os.environ["PYTHON_PROJECTS"]
-        file_path = os.path.join(base_path, "HexGridGenerator", "Inputs",
-                                 "hexcodes_expanded_2.csv")
-        hex_codes = pd.read_csv(file_path)
+        # base_path = os.environ["PYTHON_PROJECTS"]
+        base_path = os.getcwd()
+        file_path = os.path.join(base_path, "hive", "inputs", "hexcodes.json")
+        hex_codes = pd.read_json(file_path)
         hex_codes['y_scaled'] = hex_codes['y'] - hex_codes['y'].min()
         for c, x, y in zip(hex_codes.id, hex_codes.x, hex_codes.y_scaled):
             country_data.append(Country(c, x, y))
